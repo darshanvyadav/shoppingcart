@@ -2,6 +2,7 @@ package com.pooja.shoppingcart.controller;
 
 import com.pooja.shoppingcart.model.Cart;
 import com.pooja.shoppingcart.model.CartProduct;
+import com.pooja.shoppingcart.model.User;
 import com.pooja.shoppingcart.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class CartController {
     public Cart getCartByUserId() {return null;}
 
     @PostMapping(value = "/cart")
-    public Cart createCartByUserId( ) {
+    public Cart createCartByUserId(@RequestBody User user) {
 
         return null;
     }
