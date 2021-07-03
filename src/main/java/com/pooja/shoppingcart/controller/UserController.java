@@ -1,16 +1,10 @@
 package com.pooja.shoppingcart.controller;
 
-import com.pooja.shoppingcart.dto.UserDomain;
-import com.pooja.shoppingcart.exception.NotFoundException;
+
 import com.pooja.shoppingcart.model.User;
 import com.pooja.shoppingcart.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class UserController {
