@@ -18,7 +18,6 @@ public class CartController {
 
     @PostMapping(value = "/cart")
     public Cart createCartByUserId(@RequestBody User user) {
-
         return null;
     }
 

@@ -1,10 +1,15 @@
 package com.pooja.shoppingcart.controller;
 
 import com.pooja.shoppingcart.model.Product;
+import com.pooja.shoppingcart.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductController {
+
+    @Autowired
+    ProductRepository productRepository;
 
     @GetMapping(value = "/Product/{id}")
     public Product getProductById(){return null;}
