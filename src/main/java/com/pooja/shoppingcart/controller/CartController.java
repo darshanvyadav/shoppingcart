@@ -14,16 +14,30 @@ public class CartController {
     CartRepository cartRepository;
 
     @GetMapping(value = "/cart/{userId}")
-    public Cart getCartByUserId() {return null;}
-
-    @PostMapping(value = "/cart")
-    public Cart createCartByUserId(@RequestBody User user) {
-        return null;
+    public Cart getCartByUserId(@PathVariable String userId) {
+        return cartRepository.findByUserId(userId).orElseThrow(() ->
+                new RuntimeException("Cart Not found for the id "+ userId));
     }
 
-    @PutMapping(value = "/cart/{userId}/{productId}")
-    public CartProduct updateProductInCart() {return null;}
+    @PostMapping(value = "/cart")
+    public Cart createCartByUserId(@RequestBody Cart cart) {
+        return cartRepository.save(cart);
+    }
 
-    @DeleteMapping(value = "/cart/{userId}/{productId}")
-    public CartProduct deleteProductInCart() {return null;}
+    @PostMapping(value = "/cart/{userId}")
+    public Cart updateProductInCart(@PathVariable String userId, @RequestBody Cart cart) {
+        Cart cartFromDb = cartRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("Cart Not found for the id " + userId));
+        cartFromDb.setCartProduct(cart.getCartProduct());
+        cartFromDb.setIsDeleted(cart.getIsDeleted());
+        cartFromDb.setGrandTotal(cart.getGrandTotal());
+        return cartRepository.save(cartFromDb);
+    }
+    @DeleteMapping(value = "/cart/{userId}")
+    public Cart deleteProductInCart(@PathVariable String userId) {
+        Cart cartFromDb = cartRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("Cart Not found for the id " + userId));
+        cartFromDb.setIsDeleted(true);
+        return cartRepository.save(cartFromDb);
+    }
 }

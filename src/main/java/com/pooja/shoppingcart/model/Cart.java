@@ -4,15 +4,17 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
 import java.util.UUID;
 
 
-@Document
+@Document(collection = "Cart")
+@Data
 public class Cart {
     @Id
-    private UUID cartId;
-    private UUID userId;
-    private CartProduct cartProduct;
+    private String cartId;
+    private String userId;
+    private List<CartProduct> cartProduct;
     private float grandTotal;
     private Boolean isDeleted;
 }

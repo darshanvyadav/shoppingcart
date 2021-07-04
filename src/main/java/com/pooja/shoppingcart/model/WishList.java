@@ -1,15 +1,18 @@
 package com.pooja.shoppingcart.model;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.UUID;
+import java.util.List;
 
 
-@Document
+@Document(collection = "WishList")
+@Data
 public class WishList {
-    private UUID wishListId;
-    private UUID userId;
-    private UUID productId;
+    @Id
+    private String wishListId;
+    private String userId;
+    private List<String> productIds;
     private Boolean isDeleted;
 }
